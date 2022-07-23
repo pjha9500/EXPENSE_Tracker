@@ -29,7 +29,16 @@ data.addEventListener('submit',(e)=>{
     method:'post',
     url:'http://localhost:3000/login',
     data:data
-  }).then((res)=>{console.log(res)}).catch((err)=>{console.log(err)});
+  }).then((res)=>{
+    if(res.status == 200){
+                
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userDetails', JSON.stringify({name:res.data.name, email: res.data.email}))
+    }
+    else{
+      return;
+    }
+  }).catch((err)=>{console.log(err)});
   
 
 })
