@@ -1,5 +1,12 @@
 #main-header{
-    background-color: #573b8a;
+    background-color: #344a72;;
+}
+.col-md-6{
+	display: flex;
+}
+.usercol{
+	position: relative;
+	left:500px;
 }
 
 .submit-btn{
@@ -9,7 +16,7 @@
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: #573b8a;
+	background-color: #49c1a2;
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 40px;

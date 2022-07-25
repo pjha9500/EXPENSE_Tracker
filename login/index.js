@@ -6,7 +6,7 @@ function myFunction() {
       x.type = "password";
     }
   }
-
+console.log("login form");
 class LoginData{
   constructor(email,password)
   {
@@ -34,8 +34,10 @@ data.addEventListener('submit',(e)=>{
                 
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('userDetails', JSON.stringify({name:res.data.name, email: res.data.email}))
+      window.location='../homepage/home.html';
     }
     else{
+      alert("something went wrong");
       return;
     }
   }).catch((err)=>{console.log(err)});

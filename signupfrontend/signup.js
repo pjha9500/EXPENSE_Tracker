@@ -13,17 +13,19 @@ data.addEventListener('submit',(e)=>{
     e.preventDefault();
     let name=document.getElementById('name').value;
     let email=document.getElementById('email').value;
-    let number=document.getElementById('phone').value;
+    let number=document.getElementById('Contact').value;
     let password=document.getElementById('password').value;
     let user=new newuser(name,email,number,password);
     console.log(user);
 
     axios({
         method:'post',
-        url:'http://localhost:3000/register',
+        url:'http://localhost:3000/signup',
         data:user
-    }).then((res)=>{console.log(res);
-                    alert('successfully singned up')}).catch((err)=>{console.log(err)});
+    }).then((res)=>{console.log(res.data.flag);
+                    alert('successfully singned up');
+                    window.location='../login/login.html'}).catch((err)=>{console.log(err);
+                    alert('User already exist please login')});
 
 })
 

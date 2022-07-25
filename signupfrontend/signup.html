@@ -1,42 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignUp</title>
-    <!-- <link rel="stylesheet" href=""> -->
-</head>
-<body>
-    <div class="popup-container">
-        <div class="popup-message">
-            <!-- <p>Signup Successful</p>
-            <p>Please go to Login Page to login to your account.</p> -->
-        </div>
+  <head>
+    <title>Sign Up | By Code Info</title>
+    <link rel="stylesheet" href="signup.css">
+  </head>
+  <body>
+    <div class="signup-box">
+      <h1>Sign Up</h1>
+      <h4>It's free and only takes a minute</h4>
+      <form id="form">
+        <label>First Name</label>
+        <input type="text" placeholder="" id="name" />
+        <label>Contact</label>
+        <input type="text" placeholder="" id="Contact"/>
+        <label>Email</label>
+        <input type="email" placeholder="" id="email"/>
+        <label>Password</label>
+        <input type="password" placeholder="" id="password" />
+        <button type="submit">Submit</button>
+        
+      </form>
+      <p>
+        By clicking the Sign Up button,you agree to our <br />
+        <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+      </p>
     </div>
-
-
-    <div class="main-container">
-
-        <div class="form-container" id="form-container">
-            <form id="form">
-                <label for="chk" aria-hidden="true">Sign up</label>
-                <input type="text" name="name" id="name" placeholder="User name">
-                
-                <input type="email" name="email" id="email" placeholder="Email">
-                
-                <input type="number" name="phone" id="phone" placeholder="Phone">
-                
-                <input type="password" name="password" id="password" placeholder="Password">
-                <input type="checkbox" onclick="myFunction()">Show Password
-
-                <button type="submit">Sign Up</button>
-                
-            </form>
-            <p>Alreay have a account? <a href="../LoginPage/login.html">Login</a></p>
-        </div>
-    </div>
-    <script src="signup.js"></script>
+    <p class="para-2">
+      Already have an account? <a href="login.html">Login here</a>
+    </p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
-</body>
+    <script src="signup.js"></script>
+  </body>
 </html>
