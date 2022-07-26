@@ -4,11 +4,12 @@ const bcrypt = require('bcrypt');
 const { json } = require('body-parser');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
-
+require('dotenv').config();
 
 
 exports.postExpense = (req,res,next)=>{
-    const expense = req.body.expense
+    const expense = req.body[0];
+    console.log(expense);
     req.user.createExpense({
         amount: expense.amount,
         description: expense.description,
@@ -21,6 +22,7 @@ exports.postExpense = (req,res,next)=>{
         console.log(err)
         res.status(402).json({msg: "Not added"})
     })
+   
    
 }
 

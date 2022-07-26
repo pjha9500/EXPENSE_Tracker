@@ -23,24 +23,20 @@ data.addEventListener('submit',(e)=>{
   let email=document.getElementById('email').value;
   console.log(email,password);
   let data=new LoginData(email,password);
-  console.log(data);
 
   axios({
     method:'post',
     url:'http://localhost:3000/login',
     data:data
   }).then((res)=>{
-    if(res.status == 200){
+    if(res.status === 200){
                 
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('userDetails', JSON.stringify({name:res.data.name, email: res.data.email}))
+      alert("successfull login");
       window.location='../homepage/home.html';
     }
-    else{
-      alert("something went wrong");
-      return;
-    }
-  }).catch((err)=>{console.log(err)});
+    }).catch((err)=>{alert(err.response.data.msg);console.log(err)});
   
 
 })

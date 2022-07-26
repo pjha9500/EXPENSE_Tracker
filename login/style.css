@@ -13,9 +13,9 @@ body {
   
   .login-box {
     width: 360px;
-    height: 280px;
+    height: 340px;
     margin: auto;
-    border-radius: 3px;
+    border-radius: 30px;
     background-color: white;
   }
   
@@ -62,7 +62,7 @@ body {
   }
   p {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 10px;
     font-size: 15px;
   }
   .para-2 {
@@ -72,6 +72,14 @@ body {
     margin-top: -10px;
   }
   .para-2 a {
+    color: #49c1a2;
+  }
+  .paraforgot{
+    color:white;
+    text-align: center;
+
+  }
+  .paraforgot a{
     color: #49c1a2;
   }
   

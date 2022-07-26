@@ -6,24 +6,32 @@ function showonScreen(expAmount, expCategory, expDescription, expDate){
     let newExpense = `
             ${expAmount} : ${expCategory} : ${expDescription} : ${expDate}
         `
-        // Creating new list element
-        var li = document.createElement("li")
-        li.className = "list-group-item"
+        console.log(newExpense);
+        let li=document.createElement('li');
+        li.className = "list-group-item";
+        li.innerHTML=newExpense;
         
-        // Adding text node with input value
-        li.appendChild(document.createTextNode(newExpense))
+        let del=document.createElement('button');
+        del.className="btn btn-danger btn-sm float-right delete",
+        del.innerHTML="X";
+        li.appendChild(del);
+        console.log(li);
+        document.getElementById('items').appendChild(li);
 
-        // Creating del button element
-        var delBtn = document.createElement("button")
-        delBtn.className = "btn btn-danger btn-sm float-right delete"
-
-        delBtn.appendChild(document.createTextNode("X"))
-
-        li.appendChild(delBtn)
-
-        itemList.appendChild(li)
 }
 
+let logout=document.getElementById('click');
+let option=document.getElementById('option');
+logout.addEventListener('click',()=>{
+    console.log(option);
+    option.classList.toggle('active');
+})
+let logsout=document.getElementById('logout');
+
+logsout.addEventListener('click',()=>{
+    localStorage.removeItem('token');
+    location.reload();
+})
 
 
 
@@ -41,7 +49,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         let data=res.data.expenses
         for(let i=0;i<data.length;i++)
         {
-            console.log(data[i]);
+            showonScreen(data[i].amount,data[i].category,data[i].description,data[i].createdAt.slice(0,10))
 
         }
     }
@@ -73,12 +81,62 @@ form.addEventListener('submit',(e)=>{
     console.log(details);
     let data=[];
     data.push(details);
-    data.push({ headers: {"Authorization" : token} });
     console.log(data);
     axios({
         method:'post',
-        url:'http://localhost:3000/home/addExpenses',
-        data:data
-    }).then((res)=>{console.log(res)}).catch((err)=>{console.log(err)});
+        url:'http://localhost:3000/home/addExpense',
+        data:data,
+        headers: {"Authorization" : token}
+    }).then((res)=>{console.log(res);
+        showonScreen(amount,category,description,"Today")}).catch((err)=>{console.log(err)});
     // axios.post('http://localhost:3000/home/addExpenses',[{details},{ headers: {"Authorization" : token} }]).then((res)=>console.log(res)).catch((err)=>console.log(err));
 })
+
+
+let rzp=document.getElementById('rzp-button1');
+console.log(rzp);
+
+
+// .onclick = async function (e) {
+//     const response  = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: {"Authorization" : token} });
+//     console.log(response);
+//     var options =
+//     {
+//      "key": response.data.key_id, // Enter the Key ID generated from the Dashboard
+//      "name": "Test Company",
+//      "order_id": response.data.order.id, // For one time payment
+//      "prefill": {
+//        "name": "Test User",
+//        "email": "test.user@example.com",
+//        "contact": "7003442036"
+//      },
+//      "theme": {
+//       "color": "#3399cc"
+//      },
+//      // This handler function will handle the success payment
+//      "handler": function (response) {
+//          console.log(response);
+//          axios.post('http://localhost:3000/purchase/updatetransactionstatus',{
+//              order_id: options.order_id,
+//              payment_id: response.razorpay_payment_id,
+//          }, { headers: {"Authorization" : token} }).then(() => {
+//              alert('You are a Premium User Now')
+//          }).catch(() => {
+//              alert('Something went wrong. Try Again!!!')
+//          })
+//      },
+//   };
+//   const rzp1 = new Razorpay(options);
+//   rzp1.open();
+//   e.preventDefault();
+
+//   rzp1.on('payment.failed', function (response){
+//   alert(response.error.code);
+//   alert(response.error.description);
+//   alert(response.error.source);
+//   alert(response.error.step);
+//   alert(response.error.reason);
+//   alert(response.error.metadata.order_id);
+//   alert(response.error.metadata.payment_id);
+//  });
+// }

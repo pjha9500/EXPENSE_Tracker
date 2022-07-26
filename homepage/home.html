@@ -16,6 +16,8 @@
             <h1 id="header-title">Expense Tracker</h1>
             <div class="usercol">
               <h1 id="user"></h1>
+              <button id="click">☰</button>
+              
             </div>
             
         </div>
@@ -25,7 +27,8 @@
       </div>
     </div>
   </header>
-  <div class="container">
+  
+  <div class="container" id="data">
    <div id="main" class="card card-body">
     <h2 class="title">Add Expense</h2>
     <form id="addForm" class="form-inline mb-3">
@@ -41,10 +44,19 @@
       <button type="submit" class="submit-btn">Add Expense</button>
     </form>
     <h2 class="title">Expenses</h2>
-    <!-- <ul id="items" class="list-group">
+    
+    <ul id="items" class="list-group">
       
-    </ul> -->
+    </ul>
    </div>
+   <div id="option" class="nav">
+    <nav>
+    <li><button class="buttons" id="rzp-button1">Buy Premium</button></li>
+    <li><button class="buttons">Toggle</button></li>
+    <li><button class="buttons" id="logout">Logout</button></li>
+    </nav>
+    
+  </div>
   </div>
   <script src="home.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
