@@ -16,7 +16,6 @@
             <h1 id="header-title">Expense Tracker</h1>
             <div class="usercol">
               <h1 id="user"></h1>
-              <button id="click">☰</button>
               
             </div>
             
@@ -51,14 +50,15 @@
    </div>
    <div id="option" class="nav">
     <nav>
-    <li><button class="buttons" id="rzp-button1">Buy Premium</button></li>
-    <li><button class="buttons">Toggle</button></li>
-    <li><button class="buttons" id="logout">Logout</button></li>
+    <li><button class="buttons" id="rzp" style="outline: none;">Buy Premium</button></li>
+    <li><button class="buttons" style="outline: none;" id="tog">Toggle</button></li>
+    <li><button class="buttons" id="logout" style="outline: none;">Logout</button></li>
     </nav>
     
   </div>
   </div>
   <script src="home.js" charset="utf-8"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 </body>
 </html>

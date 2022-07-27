@@ -4,18 +4,6 @@
 .col-md-6{
 	display: flex;
 }
-#click{
-	background-color: #49c1a2 ;
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-weight: bold;
-	border: none;
-}
-#click:active{
-	background-color: white;
-	color: #49c1a2;
-}
 .usercol{
 	position: relative;
 	left:800px;
@@ -36,11 +24,7 @@
 	color: white;
 	font-weight: bolder;
 }
-.buttons:active{
-	border: none;
-    outline: none;
 
-}
 .nav{
     background-color: #49c1a2;
     position: relative;
@@ -54,7 +38,6 @@
     padding-top:20px;
     padding-bottom:20px;
     margin-right: none;
-    transform: translateX(100%);
     transition: all 0.3s;
     border-top-right-radius:0px;
     border-bottom-right-radius:0px;
@@ -62,28 +45,6 @@
     font-weight: bolder;
     
 }
-.active{
-    background-color: #49c1a2;
-    position: relative;
-    left:220px;
-    bottom: 16px;
-    width: 200px;
-    height: 1000px;
-    border-radius: 30px;
-    list-style: none;
-    padding-left: 30px;
-    padding-top:20px;
-    padding-bottom:20px;
-    margin-right: none;
-    transform: translateX(0);
-    transition: all 0.3s;
-    border-top-right-radius:0px;
-    border-bottom-right-radius:0px;
-    color:white;
-    font-weight: bolder;
-
-}
-
 
 #main{
     position: relative;
@@ -135,8 +96,3 @@ a {
 	text-decoration: none;
 	color:white
   }
-a:hover{
-	text-decoration: none;
-	color:white
-
-}

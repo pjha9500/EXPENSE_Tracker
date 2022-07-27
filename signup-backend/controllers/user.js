@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const { json } = require('body-parser');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
-let TOKEN_SECRET = 'e3f105514c224ac99102ec4c783da0dd407b706b2736f7dd85e0659f53591499c7c25ebdefdf2ed0cc112420ea02f8a753e14d9c01f97f7be2e1a36ef297f723';
+
 
 exports.postSignup = async (req, res, next)=>{
     let userDetails = req.body
@@ -44,7 +44,7 @@ exports.postLogin = async(req,res,next)=>{
         const match = await bcrypt.compare(password, dbpass)
 
         if(match){
-            const token = jwt.sign(dbid, TOKEN_SECRET);
+            const token = jwt.sign(dbid, process.env.TOKEN_SECRET );
             res.status(200).json({msg:'Login successful', token: token, email: dbemail, name: dbname })
         }else{
             res.status(401).json({msg: 'User not autorized'})

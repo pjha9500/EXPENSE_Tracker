@@ -15,6 +15,10 @@ const router = express.Router();
 
 
 
+router.post('/login/password',(req,res,next)=>{
+    console.log(req.body);
+    res.send("hello");
+});
 
 
 router.post('/home/addExpense', authorizationController.authenticateToken, homeController.postExpense);
