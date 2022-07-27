@@ -32,6 +32,7 @@ exports.updateTransactionStatus = (req, res ) => {
         Order.findOne({where : {orderid : order_id}}).then(order => {
             order.update({ paymentid: payment_id, status: 'SUCCESSFUL'}).then(() => {
                 req.user.update({isPremium: true})
+                console.log("req.user",req.user)
                 return res.status(202).json({sucess: true, message: "Transaction Successful"});
             }).catch((err)=> {
                 throw new Error(err);

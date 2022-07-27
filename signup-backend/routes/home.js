@@ -20,9 +20,23 @@ router.post('/login/password',(req,res,next)=>{
     res.send("hello");
 });
 
+router.get('/home', (req,res,next)=>{
+    const token=req.header('authorization');
+    const userId=jwt.verify(token, process.env.TOKEN_SECRET);
+        console.log(userId)
+        User.findByPk(userId).then(user=>{
+            res.send(user.dataValues);
+            
+            
+        })
+        .catch(err=>{
+            throw new Error(err)
+        })
 
+});
 router.post('/home/addExpense', authorizationController.authenticateToken, homeController.postExpense);
 router.get('/home/getExpenses',authorizationController.authenticateToken, homeController.getAllExpenses);
+router.get('/home/leaderboard', authorizationController.authenticateToken, homeController.getExpenseTotals);
 
 
 

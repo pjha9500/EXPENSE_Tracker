@@ -6,6 +6,12 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
+exports.getUserDetails = (req, res, next)=>{
+    let user = req.user.dataValues
+    console.log(user);
+    res.json({user})
+}
+
 
 exports.postExpense = (req,res,next)=>{
     const expense = req.body[0];
@@ -31,4 +37,34 @@ exports.getAllExpenses = (req, res, next)=>{
     .then(expenses=>{
         res.json({expenses})
     })
+}
+
+exports.getExpenseTotals = async (req, res, next)=>{
+    
+    const totalAmount = await Expense.findAll({
+        attributes: [
+          'userId',
+          [Sequelize.fn('sum', Sequelize.col('amount')), 'total_amount'],
+        ],
+        group: ['userId'],
+        raw: true
+      })
+
+    totalAmount.sort((a,b)=> b.total_amount-a.total_amount)
+    
+    for(let i=0; i<totalAmount.length; i++){
+        let user = await User.findAll({
+
+            attributes:['name'],
+            where: {id: totalAmount[i].userId}
+        })
+
+        //console.log(user[0].name)
+
+        totalAmount[i] = {...totalAmount[i], name: user[0].name}
+    }
+
+    console.log(totalAmount)
+    res.json({totalAmount})
+      
 }
