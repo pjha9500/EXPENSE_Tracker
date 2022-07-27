@@ -6,7 +6,7 @@ function showonScreen(expAmount, expCategory, expDescription, expDate){
     let newExpense = `
             ${expAmount} : ${expCategory} : ${expDescription} : ${expDate}
         `
-        console.log(newExpense);
+        // console.log(newExpense);
         let li=document.createElement('li');
         li.className = "list-group-item";
         li.innerHTML=newExpense;
@@ -15,17 +15,11 @@ function showonScreen(expAmount, expCategory, expDescription, expDate){
         del.className="btn btn-danger btn-sm float-right delete",
         del.innerHTML="X";
         li.appendChild(del);
-        console.log(li);
+        // console.log(li);
         document.getElementById('items').appendChild(li);
 
 }
 
-let logout=document.getElementById('click');
-let option=document.getElementById('option');
-logout.addEventListener('click',()=>{
-    console.log(option);
-    option.classList.toggle('active');
-})
 let logsout=document.getElementById('logout');
 
 logsout.addEventListener('click',()=>{
@@ -89,54 +83,59 @@ form.addEventListener('submit',(e)=>{
         headers: {"Authorization" : token}
     }).then((res)=>{console.log(res);
         showonScreen(amount,category,description,"Today")}).catch((err)=>{console.log(err)});
-    // axios.post('http://localhost:3000/home/addExpenses',[{details},{ headers: {"Authorization" : token} }]).then((res)=>console.log(res)).catch((err)=>console.log(err));
+    
 })
 
 
-let rzp=document.getElementById('rzp-button1');
+
+
+let rzp=document.getElementById('rzp');
 console.log(rzp);
 
 
-// .onclick = async function (e) {
-//     const response  = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: {"Authorization" : token} });
-//     console.log(response);
-//     var options =
-//     {
-//      "key": response.data.key_id, // Enter the Key ID generated from the Dashboard
-//      "name": "Test Company",
-//      "order_id": response.data.order.id, // For one time payment
-//      "prefill": {
-//        "name": "Test User",
-//        "email": "test.user@example.com",
-//        "contact": "7003442036"
-//      },
-//      "theme": {
-//       "color": "#3399cc"
-//      },
-//      // This handler function will handle the success payment
-//      "handler": function (response) {
-//          console.log(response);
-//          axios.post('http://localhost:3000/purchase/updatetransactionstatus',{
-//              order_id: options.order_id,
-//              payment_id: response.razorpay_payment_id,
-//          }, { headers: {"Authorization" : token} }).then(() => {
-//              alert('You are a Premium User Now')
-//          }).catch(() => {
-//              alert('Something went wrong. Try Again!!!')
-//          })
-//      },
-//   };
-//   const rzp1 = new Razorpay(options);
-//   rzp1.open();
-//   e.preventDefault();
+rzp.addEventListener('click' , async (e) =>{
+    // console.log("hello");
+    const response  = await axios.get('http://localhost:3000/premiummembership', { headers: {"Authorization" : token} });
+    console.log(response);
+    var options =
+    {
+     "key": response.data.key_id, // Enter the Key ID generated from the Dashboard
+     "name": "Test Company",
+     "order_id": response.data.order.id, // For one time payment
+     "prefill": {
+       "name": "Test User",
+       "email": "test.user@example.com",
+       "contact": "7003442036"
+     },
+     "theme": {
+      "color": "#3399cc"
+     },
+     // This handler function will handle the success payment
+     "handler": function (response) {
+         console.log(response);
+         axios.post('http://localhost:3000/updatetransactionstatus',{
+             order_id: options.order_id,
+             payment_id: response.razorpay_payment_id,
+         }, { headers: {"Authorization" : token} }).then(() => {
+             alert('You are a Premium User Now')
+         }).catch(() => {
+             alert('Something went wrong. Try Again!!!')
+         })
+     },
+  };
+  const rzp1 = new Razorpay(options);
+  rzp1.open();
+  e.preventDefault();
 
-//   rzp1.on('payment.failed', function (response){
-//   alert(response.error.code);
-//   alert(response.error.description);
-//   alert(response.error.source);
-//   alert(response.error.step);
-//   alert(response.error.reason);
-//   alert(response.error.metadata.order_id);
-//   alert(response.error.metadata.payment_id);
-//  });
-// }
+  rzp1.on('payment.failed', function (response){
+  alert(response.error.code);
+  alert(response.error.description);
+  alert(response.error.source);
+  alert(response.error.step);
+  alert(response.error.reason);
+  alert(response.error.metadata.order_id);
+  alert(response.error.metadata.payment_id);
+ });
+}
+
+)
